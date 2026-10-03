@@ -1,0 +1,385 @@
+/* LUXE COUTURE - Checkout Flow, Order Receipt, & Size Guide Modal */
+
+/* 1. CHECKOUT MODAL & STEP WIZARD */
+.checkout-modal-container {
+  max-width: 980px;
+  padding: 2.5rem;
+}
+
+.checkout-steps-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.step-indicator span {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.step-indicator.active {
+  color: var(--text-primary);
+}
+
+.step-indicator.active span {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: #ffffff;
+}
+
+.step-line {
+  width: 50px;
+  height: 2px;
+  background: var(--border-color);
+}
+
+.step-line.active {
+  background: var(--accent-gold);
+}
+
+/* Checkout Layout Grid */
+.checkout-layout-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2.5rem;
+}
+
+.form-section-title {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-field label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+
+.form-field input, .form-field select {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  transition: border-color var(--transition-fast);
+}
+
+.form-field input:focus, .form-field select:focus {
+  border-color: var(--accent-gold);
+  background: var(--bg-card);
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-actions {
+  margin-top: 1rem;
+}
+
+.form-actions-split {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Payment Method Cards */
+.payment-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.payment-method-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.payment-method-card:hover {
+  border-color: var(--accent-gold);
+}
+
+.payment-method-card input[type="radio"] {
+  accent-color: var(--accent-gold);
+}
+
+.payment-method-card .method-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-method-card .method-info strong {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.payment-method-card .method-info span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.payment-method-card .method-icons {
+  font-size: 1.3rem;
+}
+
+.card-details-box {
+  background: var(--bg-secondary);
+  padding: 1.25rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid var(--border-subtle);
+}
+
+/* Order Summary Column */
+.order-summary-card {
+  background: var(--bg-secondary);
+  padding: 1.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.order-summary-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.summary-items-scroll {
+  max-height: 240px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+  padding-right: 0.5rem;
+}
+
+.summary-item-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.summary-item-row img {
+  width: 48px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.summary-item-meta {
+  flex: 1;
+}
+
+.summary-item-meta h6 {
+  font-size: 0.82rem;
+  margin-bottom: 2px;
+}
+
+.summary-item-meta small {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.summary-item-price {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.summary-math-table {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.math-row {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary);
+}
+
+.discount-math {
+  color: #15803d;
+  font-weight: 600;
+}
+
+.total-math {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+/* Step 3: Success Screen */
+.order-success-screen {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.success-check-badge {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--accent-gold-light);
+  color: var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.order-code {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0.5rem 0 1rem;
+}
+
+.order-subtext {
+  max-width: 480px;
+  margin: 0 auto 2rem;
+  font-size: 0.9rem;
+}
+
+.receipt-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+  max-width: 420px;
+  margin: 0 auto 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.badge-success {
+  color: #15803d;
+  font-weight: 600;
+}
+
+.success-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* 2. SIZE GUIDE MODAL */
+.size-guide-modal-container {
+  max-width: 760px;
+  padding: 2.5rem;
+}
+
+.size-table-wrap {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.luxury-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.luxury-table th {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.luxury-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.size-guide-tips {
+  background: var(--accent-gold-light);
+  border-left: 3px solid var(--accent-gold);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .checkout-layout-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-row-2, .form-row-3 {
+    grid-template-columns: 1fr;
+  }
+}
