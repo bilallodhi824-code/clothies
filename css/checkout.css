@@ -150,6 +150,12 @@
   border-color: var(--accent-gold);
 }
 
+.payment-method-card.selected {
+  border-color: var(--accent-gold);
+  background: var(--bg-card);
+  box-shadow: 0 4px 16px var(--accent-gold-glow);
+}
+
 .payment-method-card input[type="radio"] {
   accent-color: var(--accent-gold);
 }
@@ -381,5 +387,91 @@
   }
   .form-row-2, .form-row-3 {
     grid-template-columns: 1fr;
+  }
+}
+
+.cod-details-box, .apple-pay-details-box {
+  background: var(--bg-secondary);
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.cod-pill {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  margin-bottom: 0.5rem;
+}
+
+.btn-apple-pay {
+  background: #000000;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 0.95rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-apple-pay:hover {
+  background: #222222;
+}
+
+/* Size Unit Toggle */
+.size-unit-toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.unit-btn {
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.unit-btn.active {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+/* High-End Printable Receipt */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #checkout-modal, #checkout-modal * {
+    visibility: visible;
+  }
+  #checkout-modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    background: #ffffff !important;
+    color: #000000 !important;
+    display: block !important;
+    opacity: 1 !important;
+  }
+  .modal-close-btn, .modal-backdrop, .success-actions, .checkout-steps-bar {
+    display: none !important;
+  }
+  .checkout-modal-container {
+    box-shadow: none !important;
+    border: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
   }
 }

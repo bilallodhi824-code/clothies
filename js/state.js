@@ -21,7 +21,7 @@ class AppState {
       category: "all",
       gender: "all",
       minPrice: 0,
-      maxPrice: 1000,
+      maxPrice: 600,
       search: "",
       sortBy: "featured" // 'featured', 'price-low', 'price-high', 'rating', 'newest'
     };
@@ -66,9 +66,18 @@ class AppState {
       (item) => item.id === product.id && item.size === selectedSize && item.color.name === selectedColor.name
     );
 
+    const maxStock = product.stock || 99;
+    let addedQty = quantity;
+
     if (existingIndex > -1) {
-      this.cart[existingIndex].quantity += quantity;
+      const currentQty = this.cart[existingIndex].quantity;
+      if (currentQty >= maxStock) {
+        return { success: false, maxReached: true, currentQty, maxStock };
+      }
+      addedQty = Math.min(quantity, maxStock - currentQty);
+      this.cart[existingIndex].quantity += addedQty;
     } else {
+      addedQty = Math.min(quantity, maxStock);
       this.cart.push({
         id: product.id,
         name: product.name,
@@ -78,13 +87,14 @@ class AppState {
         image: product.images[0],
         size: selectedSize,
         color: selectedColor,
-        quantity: quantity,
-        maxStock: product.stock
+        quantity: addedQty,
+        maxStock: maxStock
       });
     }
 
     this.saveCart();
     this.notify();
+    return { success: true, addedQty, maxStock };
   }
 
   updateCartQuantity(index, quantity) {
@@ -166,7 +176,7 @@ class AppState {
       category: "all",
       gender: "all",
       minPrice: 0,
-      maxPrice: 1000,
+      maxPrice: 600,
       search: "",
       sortBy: "featured"
     };

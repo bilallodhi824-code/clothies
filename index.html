@@ -23,6 +23,8 @@
       <span>✨ COMPLIMENTARY EXPRESS GLOBAL SHIPPING ON ORDERS OVER $200</span>
       <span>•</span>
       <span class="highlight">USE CODE "LUXE20" FOR 20% OFF</span>
+      <span>•</span>
+      <span>ATELIERS: LAHORE • PARIS • NEW YORK</span>
     </div>
     <div class="top-bar-actions">
       <select class="currency-select" aria-label="Select Currency">
@@ -52,6 +54,7 @@
         <a href="#pakistani" class="nav-link" data-nav-target="shop" data-filter-origin="Pakistani">Pakistani & Asian</a>
         <a href="#western" class="nav-link" data-nav-target="shop" data-filter-origin="Western">Western Chic</a>
         <a href="#american" class="nav-link" data-nav-target="shop" data-filter-origin="American">American Street</a>
+        <a href="#asian" class="nav-link" data-nav-target="shop" data-filter-origin="Asian">Pan-Asian</a>
         <a href="#lookbook" class="nav-link" data-nav-target="lookbook">Lookbook</a>
         <a href="#blog" class="nav-link" data-nav-target="blog">Journal & Stories</a>
         <a href="#story" class="nav-link" data-nav-target="story">Artisanship</a>
@@ -62,7 +65,8 @@
         <!-- Live Predictive Search -->
         <div class="search-bar-wrap">
           <svg class="search-icon-fixed" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          <input type="text" id="global-search-input" class="search-input" placeholder="Search creations, fabrics..." autocomplete="off" />
+          <input type="text" id="global-search-input" class="search-input" placeholder="Search creations, fabrics..." autocomplete="off" aria-label="Search creations, fabrics" />
+          <button type="button" id="search-clear-btn" class="search-clear-btn" style="display:none;" aria-label="Clear Search">&times;</button>
           <div id="search-results-dropdown" class="search-dropdown"></div>
         </div>
 
@@ -305,6 +309,9 @@
         </div>
       </div>
 
+      <!-- Active Filter Chips Bar -->
+      <div class="container active-filter-chips-wrap" id="active-filter-chips" style="display: none;"></div>
+
       <!-- Catalog Grid Container -->
       <div class="container section-pad" style="padding-top: 0;">
         <div class="product-grid" id="shop-catalog-grid"></div>
@@ -537,22 +544,52 @@
   </div>
 
   <!-- 5. MOBILE NAVIGATION DRAWER -->
-  <div class="cart-drawer" id="mobile-nav-drawer" style="left:0; right:auto; transform:translateX(-100%);">
+  <aside class="cart-drawer mobile-drawer" id="mobile-nav-drawer">
     <div class="drawer-header">
       <span class="brand-logo" style="font-size:1.2rem;">LUXE <span>COUTURE</span></span>
-      <button class="drawer-close-btn" id="mobile-drawer-close">&times;</button>
+      <button class="drawer-close-btn" id="mobile-drawer-close" aria-label="Close Navigation Menu">&times;</button>
     </div>
-    <div style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem;">
-      <a href="#home" class="nav-link active" data-nav-target="home">Home</a>
+
+    <!-- Mobile Search -->
+    <div class="mobile-search-box">
+      <div class="search-bar-wrap mobile-search-bar">
+        <svg class="search-icon-fixed" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="mobile-search-input" class="search-input" placeholder="Search creations, fabrics..." autocomplete="off" aria-label="Search creations" />
+      </div>
+    </div>
+
+    <!-- Mobile Links -->
+    <div class="mobile-nav-links-list">
+      <a href="#home" class="nav-link active" data-nav-target="home">Home Runway</a>
       <a href="#shop" class="nav-link" data-nav-target="shop" data-filter-origin="all">All Collections</a>
-      <a href="#pakistani" class="nav-link" data-nav-target="shop" data-filter-origin="Pakistani">🇵🇰 Pakistani & Asian</a>
-      <a href="#western" class="nav-link" data-nav-target="shop" data-filter-origin="Western">🇫🇷 Western Chic</a>
-      <a href="#american" class="nav-link" data-nav-target="shop" data-filter-origin="American">🇺🇸 American Street</a>
-      <a href="#lookbook" class="nav-link" data-nav-target="lookbook">Editorial Lookbook</a>
-      <a href="#story" class="nav-link" data-nav-target="story">Artisanship Story</a>
-      <a href="#wishlist" class="nav-link" data-nav-target="wishlist">My Wishlist</a>
+      <a href="#pakistani" class="nav-link" data-nav-target="shop" data-filter-origin="Pakistani">🇵🇰 Pakistani & Asian Festive</a>
+      <a href="#western" class="nav-link" data-nav-target="shop" data-filter-origin="Western">🇫🇷 Western Sartorial Chic</a>
+      <a href="#american" class="nav-link" data-nav-target="shop" data-filter-origin="American">🇺🇸 American Contemporary</a>
+      <a href="#asian" class="nav-link" data-nav-target="shop" data-filter-origin="Asian">🇯🇵 Pan-Asian Fusion</a>
+      <a href="#lookbook" class="nav-link" data-nav-target="lookbook">Runway Lookbooks</a>
+      <a href="#blog" class="nav-link" data-nav-target="blog">Journal & Craft Stories</a>
+      <a href="#story" class="nav-link" data-nav-target="story">Artisanship Heritage</a>
+      <a href="#wishlist" class="nav-link" data-nav-target="wishlist">Private Wishlist</a>
     </div>
-  </div>
+
+    <!-- Mobile Drawer Footer Controls -->
+    <div class="mobile-drawer-footer">
+      <div class="mobile-drawer-row">
+        <span>Currency:</span>
+        <select class="currency-select" aria-label="Select Currency">
+          <option value="USD">USD ($)</option>
+          <option value="PKR">PKR (₨)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="AED">AED (د.إ)</option>
+        </select>
+      </div>
+      <div class="mobile-drawer-row">
+        <span>Theme:</span>
+        <button class="btn btn-outline btn-sm theme-toggle-btn" style="padding: 0.4rem 0.85rem; font-size: 0.75rem;">Switch Dark / Light</button>
+      </div>
+    </div>
+  </aside>
 
   <!-- Toast Notification Stack -->
   <div id="toast-container" class="toast-container"></div>
@@ -584,11 +621,11 @@
         <div class="footer-col">
           <h5>Client Services</h5>
           <ul class="footer-links">
-            <li><a href="#" onclick="UI.openSizeGuideModal(); return false;">Bespoke Size Guide</a></li>
-            <li><a href="#" data-nav-target="story">Artisanal Guild Heritage</a></li>
-            <li><a href="#" onclick="UI.showToast('Global Express Delivery: 3-5 business days via DHL Express', 'info'); return false;">Express Shipping Rates</a></li>
-            <li><a href="#" onclick="UI.showToast('Complimentary luxury returns within 30 days', 'info'); return false;">Returns & Exchanges</a></li>
-            <li><a href="#" data-nav-target="wishlist">Private Wishlist</a></li>
+            <li><a href="#size-guide" id="footer-size-guide-btn">Bespoke Size Guide</a></li>
+            <li><a href="#story" data-nav-target="story">Artisanal Guild Heritage</a></li>
+            <li><a href="#shipping" id="footer-shipping-rates-btn">Express Shipping Rates</a></li>
+            <li><a href="#returns" id="footer-returns-btn">Returns & Exchanges</a></li>
+            <li><a href="#wishlist" data-nav-target="wishlist">Private Wishlist</a></li>
           </ul>
         </div>
 

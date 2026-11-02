@@ -156,11 +156,105 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-slow);
+  transition: transform var(--transition-slow), opacity var(--transition-smooth);
 }
 
-.product-card:hover .card-img {
-  transform: scale(1.04);
+.card-img.primary-img {
+  z-index: 1;
+  opacity: 1;
+}
+
+.card-img.secondary-img {
+  z-index: 2;
+  opacity: 0;
+}
+
+.product-card:hover .card-img.primary-img {
+  transform: scale(1.05);
+}
+
+.product-card:hover .card-img.secondary-img {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Active Filter Chips */
+.active-filter-chips-wrap {
+  padding-bottom: 2rem;
+}
+
+.active-chips-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  background: var(--bg-card);
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.active-chips-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.filter-chip-pill {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all var(--transition-fast);
+}
+
+.filter-chip-pill:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.06);
+}
+
+.chip-x {
+  font-size: 1.05rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.filter-chip-reset {
+  background: transparent;
+  border: none;
+  color: var(--accent-gold);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.filter-chip-reset:hover {
+  color: var(--accent-gold-hover);
+}
+
+.custom-size-notice {
+  background: var(--accent-gold-light);
+  border-left: 3px solid var(--accent-gold);
+  padding: 0.65rem 0.85rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 0.65rem;
+  line-height: 1.5;
 }
 
 /* Card Badges */
