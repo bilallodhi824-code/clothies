@@ -94,8 +94,21 @@ const App = {
 
         state.setView(targetView);
         UI.closeMobileNav();
+        const dropMenu = document.querySelector(".collections-dropdown-menu");
+        if (dropMenu) dropMenu.classList.remove("dropdown-open");
       });
     });
+
+    // Dropdown touch / outside click support
+    const dropdownWrap = document.querySelector(".nav-dropdown-wrap");
+    const dropdownMenu = document.querySelector(".collections-dropdown-menu");
+    if (dropdownWrap && dropdownMenu) {
+      document.addEventListener("click", (e) => {
+        if (!dropdownWrap.contains(e.target)) {
+          dropdownMenu.classList.remove("dropdown-open");
+        }
+      });
+    }
 
     // Mobile nav toggle
     const mobileToggle = document.getElementById("mobile-menu-toggle");
@@ -337,14 +350,33 @@ const App = {
       const target = link.getAttribute("data-nav-target");
       const originFilter = link.getAttribute("data-filter-origin");
       
-      if (target === state.currentView) {
-        if (originFilter) {
+      if (link.classList.contains("nav-dropdown-trigger")) {
+        link.classList.toggle("active", state.currentView === "shop");
+      } else if (target === state.currentView) {
+        if (originFilter && state.currentView === "shop") {
           link.classList.toggle("active", originFilter === state.activeFilters.origin);
         } else {
           link.classList.add("active");
         }
       } else {
         link.classList.remove("active");
+      }
+    });
+
+    // Update active state on collections dropdown items
+    document.querySelectorAll(".dropdown-category-item").forEach((item) => {
+      const origin = item.getAttribute("data-filter-origin");
+      if (state.currentView === "shop" && origin === state.activeFilters.origin) {
+        item.classList.add("active-origin");
+      } else {
+        item.classList.remove("active-origin");
+      }
+    });
+
+    // Wishlist header icon active indicator
+    document.querySelectorAll('[data-nav-target="wishlist"]').forEach((btn) => {
+      if (btn.classList.contains("icon-btn")) {
+        btn.classList.toggle("active-icon", state.currentView === "wishlist");
       }
     });
 
